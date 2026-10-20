@@ -40,7 +40,7 @@ jobs:
               project/*) container_path="/var/www/html/${source#project/}" ;;
               week-01/*) container_path="/workspace/$source" ;;
             esac
-            docker compose exec -T web php -l "$container_path"
+            docker compose exec -T web php -l "$container_path" </dev/null
           done
           docker compose exec -T web php /workspace/week-01/tasks/variables-and-types.php
           docker compose exec -T web php /workspace/week-01/tasks/conditionals-loops.php
