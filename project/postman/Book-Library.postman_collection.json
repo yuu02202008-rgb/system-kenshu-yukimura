@@ -1,0 +1,63 @@
+{
+  "info": {
+    "name": "Book Library — Week 2",
+    "description": "REST API / CRUDの確認用。上から順に実行すると作成IDを後続リクエストで使います。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8000" },
+    { "key": "createdBookId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "1. Status — GET JSON",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/status.php" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('status is 200', () => pm.response.to.have.status(200));", "pm.test('status is ok', () => pm.expect(pm.response.json().status).to.eql('ok'));"] } }]
+    },
+    {
+      "name": "2. Books — GET all",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/books-get.php" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('status is 200', () => pm.response.to.have.status(200));", "pm.test('returns a data array', () => pm.expect(pm.response.json().data).to.be.an('array'));"] } }]
+    },
+    {
+      "name": "3. Books — POST create",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Postman Test Book\",\n  \"author\": \"Yuki\",\n  \"year\": 2026,\n  \"genre\": \"Study\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/books-create.php"
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('created with 201', () => pm.response.to.have.status(201));", "const body = pm.response.json();", "pm.collectionVariables.set('createdBookId', String(body.id));", "pm.test('response has an id', () => pm.expect(body.id).to.be.a('number'));"] } }]
+    },
+    {
+      "name": "4. Books — GET created item",
+      "request": { "method": "GET", "url": "{{baseUrl}}/api/books-get.php?id={{createdBookId}}" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('status is 200', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "5. Books — PUT update",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"id\": {{createdBookId}},\n  \"title\": \"Updated Postman Test Book\",\n  \"author\": \"Yuki\",\n  \"year\": 2026,\n  \"genre\": \"Study\"\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/books-update.php"
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('updated with 200', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "6. Books — DELETE item",
+      "request": { "method": "DELETE", "url": "{{baseUrl}}/api/books-delete.php?id={{createdBookId}}" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('deleted with 200', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "7. Books — POST missing title (400 expected)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\n  \"author\": \"Yuki\",\n  \"year\": 2026\n}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/api/books-create.php"
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('invalid request returns 400', () => pm.response.to.have.status(400));"] } }]
+    }
+  ]
+}
