@@ -1,0 +1,27 @@
+HTTPメソッドとステータスコード
+==============================
+
+GET
+- 用途: データを取得する。通常、サーバーのデータを変更しない。
+- 例: GET /api/books-get.php?id=1 でID 1の本を取得する。
+
+POST
+- 用途: 新しいデータを作成する。
+- 例: POST /api/books-create.php にJSONの本データを送る。
+
+PUT
+- 用途: 指定したデータを更新する。
+- 例: PUT /api/books-update.php にidと更新後の本データを送る。
+
+DELETE
+- 用途: 指定したデータを削除する。
+- 例: DELETE /api/books-delete.php?id=1 でID 1の本を削除する。
+
+代表的なステータスコード
+------------------------
+200 OK: 取得・更新などが正常に完了した。
+201 Created: 新しいデータを正常に作成した。
+400 Bad Request: 必須項目がない、形式が違うなど、送信内容に問題がある。
+404 Not Found: 指定したURLやIDのデータが存在しない。
+405 Method Not Allowed: URLは正しいが、使えないHTTPメソッドで要求した。
+500 Internal Server Error: サーバー内部の予期しないエラー。接続情報などを利用者へ表示しない。
