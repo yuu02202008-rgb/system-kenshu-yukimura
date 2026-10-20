@@ -44,7 +44,8 @@ def main():
     assert check_json("/api/status.php", 200)["status"] == "ok"
     books = check_json("/api/books-get.php", 200)["data"]
     assert len(books) == 3, books
-    assert check_json("/api/books-get.php?id=1", 200)["data"]["title"] == "星の王子さま"
+    first_book = check_json("/api/books-get.php?id=1", 200)["data"]
+    assert first_book["title"] == "星の王子さま", first_book
     assert check_json("/api/books-get.php?id=999999", 404)["error"] == "Book not found."
     check_json("/api/books-get.php?id=0", 400)
     check_json("/api/books-create.php", 400, "POST", {"author": "Yuki", "year": 2026})
