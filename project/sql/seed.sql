@@ -1,3 +1,5 @@
+SET NAMES utf8mb4;
+
 USE training;
 
 INSERT INTO books (title, author, year, genre) VALUES
