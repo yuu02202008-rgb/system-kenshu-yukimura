@@ -29,8 +29,8 @@ jobs:
 
       - name: Load three sample books
         run: |
-          docker compose exec -T database sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" training' < project/sql/schema.sql
-          docker compose exec -T database sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" training' < project/sql/seed.sql
+          docker compose exec -T database sh -c 'mysql --default-character-set=utf8mb4 -uroot -p"$MYSQL_ROOT_PASSWORD" training' < project/sql/schema.sql
+          docker compose exec -T database sh -c 'mysql --default-character-set=utf8mb4 -uroot -p"$MYSQL_ROOT_PASSWORD" training' < project/sql/seed.sql
 
       - name: Check PHP syntax and run Week 1 exercises
         run: |
