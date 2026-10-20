@@ -1,0 +1,62 @@
+name: Week 1 and 2 runtime checks
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v6
+
+      - name: Create temporary local database credentials
+        run: |
+          {
+            printf 'MYSQL_ROOT_PASSWORD=%s\n' "$(openssl rand -hex 24)"
+            printf 'MYSQL_DATABASE=training\n'
+            printf 'MYSQL_USER=training_user\n'
+            printf 'MYSQL_PASSWORD=%s\n' "$(openssl rand -hex 24)"
+          } > .env
+
+      - name: Build and start PHP and MySQL
+        run: docker compose up --build --wait --wait-timeout 180 web database
+
+      - name: Load three sample books
+        run: |
+          docker compose exec -T database sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" training' < project/sql/schema.sql
+          docker compose exec -T database sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD" training' < project/sql/seed.sql
+
+      - name: Check PHP syntax and run Week 1 exercises
+        run: |
+          set -euo pipefail
+          find project week-01 -name '*.php' -print | while IFS= read -r source; do
+            case "$source" in
+              project/*) container_path="/var/www/html/${source#project/}" ;;
+              week-01/*) container_path="/workspace/$source" ;;
+            esac
+            docker compose exec -T web php -l "$container_path"
+          done
+          docker compose exec -T web php /workspace/week-01/tasks/variables-and-types.php
+          docker compose exec -T web php /workspace/week-01/tasks/conditionals-loops.php
+          docker compose exec -T web php /workspace/week-01/tasks/functions-arrays.php
+          docker compose exec -d web php -S 0.0.0.0:8001 -t /workspace/week-01/tasks
+
+      - name: Check Book Library, form and CRUD API
+        run: python3 project/tests/smoke.py
+
+      - name: Run the Postman collection with Newman
+        run: npx --yes newman@6.2.2 run project/postman/Book-Library.postman_collection.json --bail
+
+      - name: Show container logs on failure
+        if: failure()
+        run: docker compose logs --no-color web database
+
+      - name: Remove temporary containers and database
+        if: always()
+        run: docker compose down -v
