@@ -18,6 +18,17 @@ $values = [
 ];
 
 foreach ($values as $label => $value) {
-    echo $label . ': ';
+    if (is_array($value)) {
+        $display = implode(', ', $value);
+    } elseif (is_bool($value)) {
+        $display = $value ? 'true' : 'false';
+    } elseif ($value === null) {
+        $display = 'null';
+    } else {
+        $display = (string) $value;
+    }
+
+    echo $label . ' — echo: ' . $display . PHP_EOL;
+    echo $label . ' — var_dump: ';
     var_dump($value);
 }
