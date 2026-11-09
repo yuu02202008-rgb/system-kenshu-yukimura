@@ -1,0 +1,9 @@
+Listen 80: Apacheがコンテナ内で待ち受けるポート。Macでは8000へアクセスする。
+DocumentRoot /var/www/html: 公開ファイルの基準。Composeでprojectをマウントする。
+AllowOverride All: .htaccessの設定を許可する。Dockerfileで明示する。
+mod_rewrite: URLを内部的に別の処理先へ渡すモジュール。
+RewriteRule ^ index.php [QSA,L]: 画面用の実ファイル等を除き入口をまとめる。
+QSA: クエリ文字列を引き継ぐ。L: この書き換え処理を終了する。
+ブラウザのURLを変更するリダイレクトではなく内部転送。
+config/src/sql/tests等の内部ファイルは直接配信しない。
+getenvは.envを自動的には読まない。ComposeのenvironmentからPHPへ渡す。

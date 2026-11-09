@@ -37,10 +37,25 @@ def check_json(path, expected_status, method="GET", payload=None):
 
 
 def main():
-    status, html, _ = request(BASE + "/")
+    status, html, _ = request(BASE + "/examples/week-01.php")
     assert status == 200 and "Book Library" in html.decode("utf-8")
     assert "星の王子さま" in html.decode("utf-8")
 
+    status, html, _ = request(BASE + "/")
+    assert status == 200 and 'id="book-form"' in html.decode("utf-8")
+    assert len(check_json("/api/books", 200)["data"]) == 3
+    check_json("/not-a-route", 404)
+    check_json("/api/books", 405, "PATCH", {})
+    check_json("/api/books?id=999999", 404)
+    routed = check_json("/api/books", 201, "POST", {
+        "title": "Route Test", "author": "Test", "year": 2026, "genre": "Study"})
+    rid = routed["id"]
+    assert check_json(f"/api/books?id={rid}", 200)["data"]["title"] == "Route Test"
+    assert check_json("/api/books", 200, "PUT", {"id": rid, "title": "Changed"})["data"]["title"] == "Changed"
+    check_json(f"/api/books?id={rid}", 200, "DELETE")
+    check_json(f"/api/books?id={rid}", 404, "DELETE")
+    status, _, _ = request(BASE + "/config/db.php")
+    assert status == 403
     assert check_json("/api/status.php", 200)["status"] == "ok"
     books = check_json("/api/books-get.php", 200)["data"]
     assert len(books) == 3, books

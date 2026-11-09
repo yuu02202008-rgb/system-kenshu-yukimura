@@ -1,7 +1,8 @@
-name: Week 1 and 2 runtime checks
+name: Week 1 through 4 checks
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -35,10 +36,10 @@ jobs:
       - name: Check PHP syntax and run Week 1 exercises
         run: |
           set -euo pipefail
-          find project week-01 -name '*.php' -print | while IFS= read -r source; do
+          find project week-01 week-03 -name '*.php' -print | while IFS= read -r source; do
             case "$source" in
               project/*) container_path="/var/www/html/${source#project/}" ;;
-              week-01/*) container_path="/workspace/$source" ;;
+              week-01/*|week-03/*) container_path="/workspace/$source" ;;
             esac
             docker compose exec -T web php -l "$container_path" </dev/null
           done

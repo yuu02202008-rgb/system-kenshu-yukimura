@@ -8,6 +8,8 @@ services:
       - ./project:/var/www/html
       - ./week-01:/workspace/week-01:ro
       - ./week-02:/workspace/week-02:ro
+      - ./week-03:/workspace/week-03:ro
+      - ./week-04:/workspace/week-04:ro
     environment:
       DB_HOST: database
       DB_NAME: ${MYSQL_DATABASE:?Set MYSQL_DATABASE in .env}
