@@ -1,0 +1,9 @@
+Options -Indexes
+RewriteEngine On
+RewriteRule ^(?:config|src|sql|tests|postman|screenshots)(?:/|$) - [F,L]
+# 実在する画面用ファイルは直接配信。APIはindex.phpへ集約。
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^frontend(?:/|$) - [L]
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^ index.php [QSA,L]
