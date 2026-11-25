@@ -12,16 +12,16 @@ $genre = requiredText($body, 'genre');
 
 $errors = [];
 if ($title === null) {
-    $errors['title'] = 'title is required.';
+    $errors['title'] = 'title must be non-empty and at most 255 characters.';
 }
 if ($author === null) {
-    $errors['author'] = 'author is required.';
+    $errors['author'] = 'author must be non-empty and at most 255 characters.';
 }
 if ($year === null) {
     $errors['year'] = 'year must be an integer from 0 to 9999.';
 }
 if ($genre === null) {
-    $errors['genre'] = 'genre is required.';
+    $errors['genre'] = 'genre must be non-empty and at most 100 characters.';
 }
 if ($errors !== []) {
     jsonResponse(['error' => 'Validation failed.', 'details' => $errors], 400);

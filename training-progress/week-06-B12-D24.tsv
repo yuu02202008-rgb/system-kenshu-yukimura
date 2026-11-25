@@ -1,0 +1,13 @@
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/	feature/docker-setupブランチで第5〜7週の変更を提出しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/docker-compose.yml	通常起動はwebserverとdatabaseの2サービスです。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/Dockerfile	PHP8.3/Apache・マウント・環境変数・8000番ポートを設定しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/docker-compose.yml	MySQL8と永続化ボリュームを設定し、起動確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/.env.example	必要な変数と用途のコメントを記載しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814	CIでDockerスタックのビルド・起動が成功しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814	GET・POST・PUT・DELETEを実DBに接続して確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	フロントエンドから実APIへの取得・追加・編集・削除を検証しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/README.md	clone・env・Compose・DB初期化・アクセス手順を更新しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/pull/2	main向けの提出用PR #2を作成しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/pull/2	変更内容・検証方法・未確認事項をPRに記載しました。
+FALSE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/pull/2	チームメイトによるレビューコメント待ちです。
+FALSE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/pull/2	レビュー対応とmainへのマージは未実施です。

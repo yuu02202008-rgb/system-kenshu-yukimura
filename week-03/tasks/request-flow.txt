@@ -1,0 +1,16 @@
+本一覧取得の流れ
+1. PostmanがGET http://localhost:8000/api/booksを送る。
+2. Macの8000番ポートに届く。
+3. Dockerがwebコンテナの80番ポートへ転送する。
+4. Apacheがリクエストを受ける。
+5. .htaccessがindex.phpへ内部転送する。
+6. index.phpがHTTPメソッドとパスを調べる。
+7. books-get.phpを呼ぶ。
+8. config/db.phpが環境変数を読み、PDOでDBへ接続する。
+9. SELECT文でbooksテーブルを検索する。
+10. MySQLが検索結果を返す。
+11. PHPが結果をJSONへ変換する。
+12. ステータス200とJSONをクライアントへ返す。
+
+REQUEST_URIにはクエリ文字列も含まれる。parse_urlでパスを取り出す。
+確認例: /api/books?id=1 と /api/books?id=999999

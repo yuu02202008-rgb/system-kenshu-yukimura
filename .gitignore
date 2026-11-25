@@ -4,3 +4,6 @@
 .vscode/
 vendor/
 *.log
+project/uploads/
+
+node_modules/

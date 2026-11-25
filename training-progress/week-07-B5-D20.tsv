@@ -1,0 +1,16 @@
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814	200・201・400・404と、DB停止時の500を確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/api/response.php	必須項目・型・文字数・年・IDを検証し、エラーをJSONで返します。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/api/	API内の全SQLをプリペアドステートメントにしました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/config/db.php	接続情報は環境変数から取得し、実パスワードは含めていません。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	初回読込でDBの本一覧を表示するテストが通りました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	入力確認→POST→一覧反映とDB保存を確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	DELETE成功後のカード削除とDBからの削除を確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/assets/js/app.js	通信中表示とボタン無効化を確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	通信失敗時のエラー表示と既存データ保持を確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	編集時に既存値を入力し、PUTで更新・保存を確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	タイトル・著者を絞り込み、追加API通信がないことを確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/assets/js/ui.js	0件時と検索結果0件時のメッセージを確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/index.html	ページタイトルとSVGファビコンを設定しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814	DockerでPHP/ApacheとMySQLの起動が成功しました。
+FALSE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/pull/2	PR作成済み。チームメイトのレビューとmainマージは待ちです。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/README.md	起動・API・画面機能・テスト・制限を現実装に合わせました。

@@ -28,7 +28,7 @@ function readJsonBody(): array
     $rawBody = file_get_contents('php://input');
     $decoded = json_decode($rawBody === false ? '' : $rawBody, true);
 
-    if (!is_array($decoded) || json_last_error() !== JSON_ERROR_NONE) {
+    if (!is_array($decoded) || json_last_error() !== JSON_ERROR_NONE || !is_object(json_decode($rawBody === false ? '' : $rawBody))) {
         jsonResponse(['error' => 'Request body must be a valid JSON object.'], 400);
     }
 
@@ -37,6 +37,7 @@ function readJsonBody(): array
 
 function positiveInteger(mixed $value): ?int
 {
+    if (!is_int($value) && !is_string($value)) return null;
     $validated = filter_var($value, FILTER_VALIDATE_INT);
     return $validated !== false && $validated > 0 ? $validated : null;
 }
@@ -48,11 +49,14 @@ function requiredText(array $data, string $key): ?string
     }
 
     $value = trim($data[$key]);
-    return $value === '' ? null : $value;
+    $limit = $key === 'genre' ? 100 : 255;
+    $length = preg_match_all('/./us', $value);
+    return $value === '' || $length === false || $length > $limit ? null : $value;
 }
 
 function validBookYear(mixed $value): ?int
 {
+    if (!is_int($value) && !is_string($value)) return null;
     $validated = filter_var($value, FILTER_VALIDATE_INT);
     return $validated !== false && $validated >= 0 && $validated <= 9999
         ? $validated

@@ -1,0 +1,4 @@
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-05/tasks/api.js	then版とasync/await版を実装し、同じ結果を返すことを確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-05/tasks/	10件表示・通信中・エラー表示をDOMテストで確認しました。外部APIのGETも200でした。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-05/tasks/	送信中のボタン無効化と応答表示を確認しました。外部APIのPOSTも201でした。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-05/tasks/	通信をapi.js、DOM操作をmain.jsに分けました。

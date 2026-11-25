@@ -1,0 +1,8 @@
+webserver: Dockerfileのphp:8.3-apacheをビルド。pdo_mysqlとrewriteを有効化。
+projectを/var/www/htmlにマウント。8000:80はPCの8000→コンテナ80。
+.envをComposeが読み、environmentでDB_HOST/NAME/USER/PASSをPHPへ渡す。
+database: mysql:8.0。DBとユーザーは環境変数で初期作成。mysql_dataで永続化。
+healthcheckが成功してからwebserverを開始する。
+phpmyadmin: toolsプロファイル限定の任意管理画面。通常起動は上記2サービスだけ。
+docker compose --profile tools up -d phpmyadmin で管理画面を追加可能。
+docker compose downはコンテナ停止・削除。down -vはDBデータも消すため普段は使わない。

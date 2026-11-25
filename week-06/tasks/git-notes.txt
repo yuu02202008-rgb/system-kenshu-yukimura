@@ -1,0 +1,10 @@
+git switch -c feature/docker-setup: 元ブランチから作業用ブランチを作る。
+git add <file>: 次のコミットに含める変更を選ぶ。
+git commit -m "説明": 選んだ変更を履歴に記録。
+git push -u origin feature/docker-setup: GitHubへブランチを送る。
+git switch main / git merge feature/docker-setup: ブランチの変更を統合。
+実プロジェクトはPRを作り、チームメイトのレビュー後にGitHubで統合する。
+この提出ではAI支援でGitHub API経由でコミットとブランチを作成。CLIのpushを本人が実演した記録ではない。
+コンフリクトの再現・解消はconflict-demo.shで一時リポジトリを用いて行う。
+原因: 分岐した2ブランチが同じ行を異なる値へ変更。
+解消: 両方の意図を確認して最終内容を書く→git add→git commit。
