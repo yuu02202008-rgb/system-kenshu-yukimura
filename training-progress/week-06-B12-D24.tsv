@@ -3,8 +3,8 @@ TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/dock
 TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/Dockerfile	PHP8.3/Apache・マウント・環境変数・8000番ポートを設定しました。
 TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/docker-compose.yml	MySQL8と永続化ボリュームを設定し、起動確認しました。
 TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/.env.example	必要な変数と用途のコメントを記載しました。
-TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535696984	CIでDockerスタックのビルド・起動が成功しました。
-TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535696984	GET・POST・PUT・DELETEを実DBに接続して確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814	CIでDockerスタックのビルド・起動が成功しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814	GET・POST・PUT・DELETEを実DBに接続して確認しました。
 TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	フロントエンドから実APIへの取得・追加・編集・削除を検証しました。
 TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/README.md	clone・env・Compose・DB初期化・アクセス手順を更新しました。
 TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/pull/2	main向けの提出用PR #2を作成しました。

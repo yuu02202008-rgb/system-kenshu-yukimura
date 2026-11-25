@@ -1,0 +1,59 @@
+Executed in GitHub Actions on 2026-11-25
+Source: https://github.com/yuu02202008-rgb/system-kenshu-yukimura/actions/runs/45535992814
+Commands: docker compose exec -T webserver php -v; php -m; ls
+
+PHP 8.3.37 (cli) (built: Nov 24 2026 04:26:30) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.3.37, Copyright (c) Zend Technologies
+    with Zend OPcache v8.3.37, Copyright (c), by Zend Technologies
+[PHP Modules]
+Core
+ctype
+curl
+date
+dom
+fileinfo
+filter
+hash
+iconv
+json
+libxml
+mbstring
+mysqli
+mysqlnd
+openssl
+pcre
+PDO
+pdo_mysql
+pdo_sqlite
+Phar
+posix
+random
+readline
+Reflection
+session
+SimpleXML
+sodium
+SPL
+sqlite3
+standard
+tokenizer
+xml
+xmlreader
+xmlwriter
+Zend OPcache
+zlib
+
+[Zend Modules]
+Zend OPcache
+
+api
+config
+examples
+frontend
+index.php
+postman
+screenshots
+sql
+src
+tests
