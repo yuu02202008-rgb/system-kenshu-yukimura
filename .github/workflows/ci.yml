@@ -62,8 +62,8 @@ jobs:
       - name: Record container information and Git conflict exercise
         run: |
           mkdir -p evidence
-          { docker compose exec -T webserver php -v; docker compose exec -T webserver php -m; docker compose exec -T webserver ls; } > evidence/container-info.txt
-          bash week-06/tasks/conflict-demo.sh > evidence/conflict-demo.txt
+          { docker compose exec -T webserver php -v; docker compose exec -T webserver php -m; docker compose exec -T webserver ls; } | tee evidence/container-info.txt
+          bash week-06/tasks/conflict-demo.sh | tee evidence/conflict-demo.txt
 
       - name: Verify database failure returns a safe 500 response
         run: |

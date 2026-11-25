@@ -1,0 +1,15 @@
+import {JSDOM} from 'jsdom';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const dom=new JSDOM(await readFile('week-05/tasks/index.html','utf8'),{runScripts:'outside-only'});
+const w=dom.window,d=w.document;let failing=false, release, requestBody;
+w.fetch=async (url,options={})=>{if(failing)throw Error('Network unavailable');if(options.method==='POST'){requestBody=JSON.parse(options.body);await new Promise(r=>release=r);return {ok:true,json:async()=>({...requestBody,id:101})};}return {ok:true,json:async()=>Array.from({length:10},(_,id)=>({id,title:`Post ${id}`}))};};
+const context=dom.getInternalVMContext();const api=new vm.SourceTextModule(await readFile('week-05/tasks/api.js','utf8'),{context});await api.link(()=>{});await api.evaluate();
+assert.deepEqual(JSON.parse(JSON.stringify(await api.namespace.fetchPosts())),JSON.parse(JSON.stringify(await api.namespace.fetchPostsPromise())));
+const main=new vm.SourceTextModule(await readFile('week-05/tasks/main.js','utf8'),{context});await main.link(()=>api);await main.evaluate();
+const tick=()=>new Promise(r=>setTimeout(r,0));
+d.querySelector('#load').click();assert.equal(d.querySelector('#load').disabled,true);await tick();assert.equal(d.querySelectorAll('li').length,10);assert.equal(d.querySelector('#load').disabled,false);
+const form=d.querySelector('form');form.elements.title.value='Test';form.dispatchEvent(new w.Event('submit',{cancelable:true}));assert.equal(form.querySelector('button').disabled,true);release();await tick();assert.equal(form.querySelector('button').disabled,false);assert.equal(JSON.parse(d.querySelector('#response').textContent).id,101);
+failing=true;d.querySelector('#load').click();await tick();assert.match(d.querySelector('#status').textContent,/Network unavailable/);assert.equal(d.querySelector('#load').disabled,false);
+console.log('PASS: Promise/await parity, ten rendered posts, POST disabled/restored, response and network errors (mock HTTP)');dom.window.close();

@@ -1,0 +1,8 @@
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/assets/js/api.js	取得・追加・更新・削除の通信処理をまとめました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/assets/js/ui.js	一覧・エラー・通信中の表示を関数に分けました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/assets/js/app.js	api.jsとui.jsをimportして操作につなげました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	ページ読込時にDBの本を取得して表示することを確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	POST成功後にフォームを空にして、一覧へ反映しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	DELETE成功後にカードを削除し、失敗時は残すことを確認しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/tests/frontend.mjs	通信失敗時にメッセージを表示するテストが通りました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/project/frontend/	第5週の実装をGitHubへ反映しました。

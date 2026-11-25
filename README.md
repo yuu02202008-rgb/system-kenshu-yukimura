@@ -61,7 +61,7 @@ yearは0〜9999の整数。更新で省略した項目は現在値を維持し�
 ## 検証
 
 GitHub ActionsでDockerを起動し、PHP構文、HTTP CRUD、Postman/Newman、実APIに接続したjsdomの画面操作、DB停止時500を検証します。
-jsdomはブラウザーのレイアウトを描画しません。スマホ幅・デスクトップ幅の見た目と外部Fetch教材の実通信は別途確認対象です。
+jsdomはブラウザーのレイアウトを描画しません。スマホ幅・デスクトップ幅の見た目は別途確認対象です。第5週教材は模擬HTTPによるDOMテストと、外部APIのGET 200（10件）・POST 201を別々に確認しています。
 コンテナの `php -v` / `php -m` / `ls` とコンフリクト実行記録をActionsの `week-06-execution-evidence` artifactに保存します。
 ローカルでの同じテストは、初期データ3冊の専用DBで `python3 project/tests/smoke.py` と `npm ci && npm test`（Node 22以降）を実行します。
 HTTPテストは第1週フォームの開発サーバーも必要です。利用中のDBではなく検証用環境で実行してください。

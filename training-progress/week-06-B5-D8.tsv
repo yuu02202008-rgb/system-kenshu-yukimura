@@ -1,0 +1,4 @@
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-06/tasks/git-notes.txt	ブランチ・マージ・pushの説明を用意。マージ練習を実行し、提出はGitHub APIで反映しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-06/tasks/conflict-demo.sh	一時リポジトリで同じ行の衝突を再現し、解消しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-06/tasks/docker-notes.txt	各サービス・ポート・環境変数・永続化を説明しました。
+TRUE	https://github.com/yuu02202008-rgb/system-kenshu-yukimura/tree/feature/docker-setup/week-06/tasks/	CIでphp -v・php -m・lsを実行。出力をActionsのcontainer-info.txtに保存しました。
