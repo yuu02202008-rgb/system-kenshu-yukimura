@@ -37,6 +37,11 @@ def check_json(path, expected_status, method="GET", payload=None):
 
 
 def main():
+    for bad in [[], {"title": "a"*256, "author":"A", "year":2026, "genre":"G"},
+                {"title":"A", "author":"A", "year":True, "genre":"G"}]:
+        check_json("/api/books",400,"POST",bad)
+    check_json("/api/books",400,"PUT",{"id":True})
+    check_json("/api/books?id[]=1",400)
     status, html, _ = request(BASE + "/examples/week-01.php")
     assert status == 200 and "Book Library" in html.decode("utf-8")
     assert "星の王子さま" in html.decode("utf-8")

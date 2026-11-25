@@ -26,7 +26,8 @@ if ($rawId !== null) {
     jsonResponse(['status' => 'ok', 'data' => $book]);
 }
 
-$statement = $pdo->query(
+$statement = $pdo->prepare(
     'SELECT id, title, author, year, genre FROM books ORDER BY id ASC'
 );
+$statement->execute();
 jsonResponse(['status' => 'ok', 'data' => $statement->fetchAll()]);

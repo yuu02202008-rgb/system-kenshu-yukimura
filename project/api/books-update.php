@@ -25,21 +25,21 @@ $title = array_key_exists('title', $body) ? requiredText($body, 'title') : $exis
 $author = array_key_exists('author', $body) ? requiredText($body, 'author') : $existing['author'];
 $year = array_key_exists('year', $body) ? validBookYear($body['year']) : (int) $existing['year'];
 $genre = array_key_exists('genre', $body)
-    ? (is_string($body['genre']) ? trim($body['genre']) : null)
+    ? requiredText($body, 'genre')
     : $existing['genre'];
 
 $errors = [];
 if ($title === null) {
-    $errors['title'] = 'title must be a non-empty string.';
+    $errors['title'] = 'title must be non-empty and at most 255 characters.';
 }
 if ($author === null) {
-    $errors['author'] = 'author must be a non-empty string.';
+    $errors['author'] = 'author must be non-empty and at most 255 characters.';
 }
 if ($year === null) {
     $errors['year'] = 'year must be an integer from 0 to 9999.';
 }
 if ($genre === null) {
-    $errors['genre'] = 'genre must be a string.';
+    $errors['genre'] = 'genre must be non-empty and at most 100 characters.';
 }
 if ($errors !== []) {
     jsonResponse(['error' => 'Validation failed.', 'details' => $errors], 400);
